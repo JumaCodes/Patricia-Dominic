@@ -11,9 +11,13 @@ type Data = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
-){
+  res: NextApiResponse<Data>
+) {
+  try {
     const socials: Social[] = await sanityClient.fetch(query);
     res.status(200).json({ socials });
-  
+  } catch (error) {
+    console.error("Error fetching socials:", error);
+    res.status(500).json({ socials: [] });
+  }
 }

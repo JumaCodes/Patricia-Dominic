@@ -1,6 +1,5 @@
 import type { GetStaticProps } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -9,12 +8,12 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Link from "next/link";
-import { Experiences, PageInfo, Project, MYSkills, Social } from "@/typings";
-import { fetchSocials } from "@/utils/fetchSocials";
-import { fetchProjects } from "@/utils/fetchProjects";
-import { fetchSkills } from "@/utils/fetchSkills";
+import { PageInfo, Project, Experiences, MYSkills, Social } from "@/typings";
 import { fetchPageInfo } from "@/utils/fetchPageInfo";
+import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchExperiences } from "@/utils/fetchExperiences";
+import { fetchSkills } from "@/utils/fetchSkills";
+import { fetchSocials } from "@/utils/fetchSocials";
 
 type Props = {
   pageInfo: PageInfo;
@@ -24,31 +23,24 @@ type Props = {
   skills: MYSkills[];
 };
 
-const Home = ({pageInfo, projects, experiences, socials, skills}: Props) => {
+const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
       <Head>
-        <title>Steve-John Olumese's Portfolio</title>
+        <title>{pageInfo.name} Portfolio</title>
         <meta name="description" content="Welcome to my portfolio website" />
       </Head>
 
-      {/* Header Section */}
+      {/* Header */}
       <Header socials={socials} />
+
       {/* Hero */}
-      <section
-        id="hero"
-        // className="mt-20"
-        className="snap-start mb-40"
-      >
+      <section id="hero" className="snap-start mb-40">
         <Hero pageInfo={pageInfo} />
       </section>
 
       {/* About */}
-      <section
-        id="about"
-        // className="mt-40"
-        className="snap-center mb-40"
-      >
+      <section id="about" className="snap-center mb-40">
         <About pageInfo={pageInfo} />
       </section>
 
@@ -67,7 +59,7 @@ const Home = ({pageInfo, projects, experiences, socials, skills}: Props) => {
         <Projects projects={projects} />
       </section>
 
-      {/* Contact Me */}
+      {/* Contact */}
       <section id="contact" className="snap-start">
         <Contact />
       </section>
@@ -89,34 +81,35 @@ const Home = ({pageInfo, projects, experiences, socials, skills}: Props) => {
 
 export default Home;
 
+// ====================================
+// getStaticProps with Promise.all
+// ====================================
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const pageInfo: PageInfo = await fetchPageInfo();
-    const skills: MYSkills[] = await fetchSkills();
-    const experiences: Experiences[] = await fetchExperiences();
-    const projects: Project[] = await fetchProjects();
-    const socials: Social[] = await fetchSocials();
+    const [pageInfo, projects, experiences, skills, socials] =
+      await Promise.all([
+        fetchPageInfo(),
+        fetchProjects(),
+        fetchExperiences(),
+        fetchSkills(),
+        fetchSocials(),
+      ]);
 
     return {
-      props: {
-        socials,
-        projects,
-        experiences,
-        pageInfo,
-        skills
-      },
-      revalidate: 10,
+      props: { pageInfo, projects, experiences, skills, socials },
+      revalidate: 10, // ISR: regenerate every 10 seconds
     };
   } catch (error) {
     console.error("Error in getStaticProps:", error);
 
+    // fallback empty data if fetch fails
     return {
       props: {
-        socials: [],
+        pageInfo: {} as PageInfo,
         projects: [],
         experiences: [],
-        pageInfo: {} as PageInfo,
-        skills: []
+        skills: [],
+        socials: [],
       },
       revalidate: 10,
     };
