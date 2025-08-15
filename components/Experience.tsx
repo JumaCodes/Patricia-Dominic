@@ -15,7 +15,7 @@ function Experience({ experiences }: Props) {
         initial={{ y: 50, opacity: 0 }}
         transition={{ duration: 1.2 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-10"
+        className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-20"
       >
         Experience
       </motion.h3>

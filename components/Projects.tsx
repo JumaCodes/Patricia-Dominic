@@ -16,7 +16,7 @@ function Projects({ projects }: Props) {
       className="h-screen flex flex-col overflow-hidden scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80"
     >
       {/* Title */}
-      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl py-4">
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl py-4 mb-20">
         Projects
       </h3>
 

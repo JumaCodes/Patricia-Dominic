@@ -11,7 +11,7 @@ function About({ pageInfo }: Props) {
   return (
     <section className="snap-center min-h-screen flex flex-col justify-center items-center px-5 md:px-10 mx-auto max-w-7xl">
       {/* Section Title */}
-      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-10">
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-20">
         About
       </h3>
 

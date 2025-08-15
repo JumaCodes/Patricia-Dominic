@@ -16,7 +16,7 @@ function Skills({ skills }: Props) {
       </h3>
 
       {/* Subtitle */}
-      <h4 className="w-full text-center text-gray-400 uppercase tracking-[3px] text-sm mb-10">
+      <h4 className="w-full text-center text-gray-400 uppercase tracking-[3px] text-sm mb-20">
         Hover over a skill for current proficiency
       </h4>
 

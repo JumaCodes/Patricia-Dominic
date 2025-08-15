@@ -21,7 +21,7 @@ function Contact({}: Props) {
   return (
     <section className="snap-start min-h-screen flex flex-col justify-center items-center px-5 md:px-10 mx-auto max-w-7xl">
       {/* Section Title */}
-      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-5">
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-20">
         Contact
       </h3>
 
