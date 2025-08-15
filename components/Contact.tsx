@@ -1,98 +1,94 @@
-import React from 'react'
-import {PhoneIcon,  EnvelopeIcon, MapPinIcon} from "@heroicons/react/24/solid"
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React from "react";
+import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
   name: string;
   email: string;
   subject: string;
   message: string;
-}
+};
+
 type Props = {};
 
-function Contact({ }: Props) {
+function Contact({}: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
-  
+
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
     window.location.href = `mailto:olumesestevejohn@gmail.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
-
   };
 
-  // Handle form submission logic here, e.g., send data to an API or email service
-
-
-
   return (
-    <div className="h-screen relative flex flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+    <section className="snap-start min-h-screen flex flex-col justify-center items-center px-5 md:px-10 mx-auto max-w-7xl">
+      {/* Section Title */}
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-5">
         Contact
       </h3>
 
-      <div className="flex flex-col space-y-10">
-        <h4 className="text-4xl font-semibold text-center">
-          I have got just what you need.{" "}
-          <span className="underline decoration-[#F7AB0A]/50">Let's Talk.</span>
-        </h4>
+      {/* Subtitle */}
+      <h4 className="text-3xl md:text-4xl font-semibold text-center mb-10">
+        I have got just what you need.{" "}
+        <span className="underline decoration-[#F7AB0A]/50">Let's Talk.</span>
+      </h4>
 
-        <div className="space-y-10">
-          <div className="flex items-center space-x-5 justify-center">
-            <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">+2349151958943</p>
-          </div>
+      {/* Contact Info */}
+      <div className="flex flex-col space-y-5 mb-10 text-center">
+        <div className="flex items-center justify-center space-x-5">
+          <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
+          <p className="text-xl md:text-2xl">+2349151958943</p>
+        </div>
+        <div className="flex items-center justify-center space-x-5">
+          <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
+          <p className="text-xl md:text-2xl">olumesestevejohn@gmail.com</p>
+        </div>
+        <div className="flex items-center justify-center space-x-5">
+          <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
+          <p className="text-xl md:text-2xl">123 Developer Lane</p>
+        </div>
+      </div>
 
-          <div className="flex items-center space-x-5 justify-center">
-            <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">olumesestevejohn@gmail.com</p>
-          </div>
-
-          <div className="flex items-center space-x-5 justify-center">
-            <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">123 Developer Lane</p>
-          </div>
+      {/* Contact Form */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col space-y-4 w-full max-w-2xl mx-auto"
+      >
+        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+          <input
+            {...register("name")}
+            type="text"
+            placeholder="Name"
+            className="contactInput flex-1"
+          />
+          <input
+            {...register("email")}
+            type="email"
+            placeholder="Email"
+            className="contactInput flex-1"
+          />
         </div>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-2 w-fit mx-auto"
+        <input
+          {...register("subject")}
+          type="text"
+          placeholder="Subject"
+          className="contactInput"
+        />
+
+        <textarea
+          {...register("message")}
+          placeholder="Message"
+          className="contactInput"
+        />
+
+        <button
+          type="submit"
+          className="bg-[#F7AB0A] py-4 px-8 rounded-md text-black font-bold text-lg hover:scale-105 transition-transform duration-200"
         >
-          <div className="flex space-x-2">
-            <input
-              {...register("name")}
-              type="text"
-              placeholder="Name"
-              className="contactInput"
-            />
-            <input
-              {...register("email")}
-              type="email"
-              placeholder="Email"
-              className="contactInput"
-            />
-          </div>
-
-          <input
-            {...register("subject")}
-            type="text"
-            placeholder="Subject"
-            className="contactInput"
-          />
-
-          <textarea
-            {...register("message")}
-            placeholder="Message"
-            className="contactInput"
-          />
-
-          <button
-            type="submit"
-            className="bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
+          Submit
+        </button>
+      </form>
+    </section>
   );
 }
 
-export default Contact
+export default Contact;

@@ -25,7 +25,12 @@ type Props = {
 
 const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
   return (
-    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
+    <div
+      className="h-screen w-screen bg-[rgb(36,36,36)] text-white 
+             overflow-y-scroll overflow-x-hidden z-0
+             scrollbar-thin scrollbar-track-gray-400/20 
+             scrollbar-thumb-[#F7AB0A]/80 scroll-smooth"
+    >
       <Head>
         <title>{pageInfo.name} Portfolio</title>
         <meta name="description" content="Welcome to my portfolio website" />
@@ -35,41 +40,42 @@ const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
       <Header socials={socials} />
 
       {/* Hero */}
-      <section id="hero" className="snap-start mb-40">
+      <section id="hero" className="min-h-screen">
         <Hero pageInfo={pageInfo} />
       </section>
 
       {/* About */}
-      <section id="about" className="snap-center mb-40">
+      <section id="about" className="min-h-screen mb-40 mt-20">
         <About pageInfo={pageInfo} />
       </section>
 
       {/* Experience */}
-      <section id="experience" className="snap-center mb-40">
+      <section id="experience" className="min-h-screen mb-40 mt-20">
         <Experience experiences={experiences} />
       </section>
 
       {/* Skills */}
-      <section id="skills" className="snap-start mb-40">
+      <section id="skills" className="min-h-screen mb-40 mt-20">
         <Skills skills={skills} />
       </section>
 
       {/* Projects */}
-      <section id="projects" className="snap-start mb-40">
+      <section id="projects" className="min-h-screen mb-20 mt-20">
         <Projects projects={projects} />
       </section>
 
       {/* Contact */}
-      <section id="contact" className="snap-start">
+      <section id="contact" className="min-h-screen mb-20">
         <Contact />
       </section>
 
+      {/* Footer / Back to top */}
       <Link href="#hero">
-        <footer className="sticky bottom-5 w-full cursor-pointer">
+        <footer className="fixed bottom-5 w-full cursor-pointer">
           <div className="flex items-center justify-center">
             <img
               src="https://pbs.twimg.com/media/GyEHoBdWoAAM_4c?format=jpg&name=900x900"
-              alt=""
+              alt="Back to top"
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer transition duration-300"
             />
           </div>
@@ -102,7 +108,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   } catch (error) {
     console.error("Error in getStaticProps:", error);
 
-    // fallback empty data if fetch fails
     return {
       props: {
         pageInfo: {} as PageInfo,

@@ -9,86 +9,90 @@ type Props = {
 
 function Projects({ projects }: Props) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      transition={{ duration: 1.2 }}
-      whileInView={{ opacity: 1 }}
-      className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
-    >
-      {/* Section Title */}
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+    <section className="h-screen flex flex-col">
+      {/* Title - stays fixed at top */}
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-5">
         Projects
       </h3>
 
-      {/* Horizontal Scroll Container */}
-      <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
-        {projects.map((project, i) => (
-          <div
-            key={project._id}
-            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
-          >
-            {/* Clickable Project Image */}
-            {project.linkToBuild ? (
-              <a
-                href={project.linkToBuild}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <motion.img
-                  initial={{ y: -300, opacity: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2 }}
-                  src={urlFor(project.image).url()}
-                  alt={project.title}
-                  loading="lazy"
-                  className="h-[500px] w-full object-cover mb-8 mx-auto"
-                />
-              </a>
-            ) : (
-              <motion.img
-                initial={{ y: -300, opacity: 0 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2 }}
-                src={urlFor(project.image).url()}
-                alt={project.title}
-                loading="lazy"
-                className="h-[500px] w-full object-cover mb-8 mx-auto"
-              />
-            )}
-
-            {/* Project Details */}
-            <div className="space-y-10 px-0 md:px-10 max-w-6xl">
-              <h4 className="text-4xl font-semibold text-center">
-                <span className="underline decoration-[#F7AB0A]/50">
-                  Case Study {i + 1} of {projects.length}:
-                </span>{" "}
-                {project.title}
-              </h4>
-
-              {/* Technologies Used */}
-              <div className="flex flex-wrap gap-5 justify-center">
-                {project.technologies?.map((tech) => (
-                  <img
-                    src={urlFor(tech.image).url()}
-                    key={tech._id}
-                    className="w-12 h-12 object-cover rounded-full"
-                    alt={tech.title}
+      {/* Horizontal Scroll Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="flex-1 flex overflow-x-scroll overflow-y-hidden scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 px-10 md:px-20"
+      >
+        <div className="flex space-x-10">
+          {projects.map((project, i) => (
+            <div
+              key={project._id}
+              className="flex flex-row items-center justify-center space-x-8 min-w-full"
+            >
+              {/* Project Image */}
+              <div className="w-full md:w-[45%] h-[360px] md:h-[500px] flex-shrink-0">
+                {project.linkToBuild ? (
+                  <a
+                    href={project.linkToBuild}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full h-full"
+                  >
+                    <motion.img
+                      initial={{ y: -100, opacity: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.2 }}
+                      src={urlFor(project.image).url()}
+                      alt={project.title}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </a>
+                ) : (
+                  <motion.img
+                    initial={{ y: -100, opacity: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2 }}
+                    src={urlFor(project.image).url()}
+                    alt={project.title}
+                    className="w-full h-full object-cover rounded-lg"
                   />
-                ))}
+                )}
               </div>
 
-              {/* Project Summary */}
-              <p className="text-lg text-center md:text-left">
-                {project.summary}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+              {/* Project Details */}
+              <div className="w-full md:w-[50%] max-w-[500px] flex flex-col items-center md:items-start space-y-3">
+                <h4 className="text-2xl md:text-3xl font-semibold text-center md:text-left">
+                  <span className="underline decoration-[#F7AB0A]/50">
+                    Case Study {i + 1} of {projects.length}:
+                  </span>{" "}
+                  {project.title}
+                </h4>
 
-      {/* Decorative Background */}
-      <div className="w-full absolute top-[30%] bg-[#F7AB0A]/10 left-0 h-[500px] -skew-y-12" />
-    </motion.div>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  {project.technologies?.map((tech) => (
+                    <img
+                      src={urlFor(tech.image).url()}
+                      key={tech._id}
+                      className="w-10 h-10 md:w-12 md:h-12 object-cover rounded-full"
+                      alt={tech.title}
+                    />
+                  ))}
+                </div>
+
+                <h3 className="text-3xl uppercase text-[#F7AB0A] font-bold">
+                  Click The Image
+                </h3>
+
+                {/* Summary */}
+                <div className="text-base md:text-lg break-words max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-track-black scrollbar-thumb-[#F7AB0A]/80">
+                  {project.summary}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 }
 

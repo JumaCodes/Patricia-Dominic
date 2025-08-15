@@ -1,6 +1,6 @@
-import React from 'react'
-import { motion } from 'framer-motion';
-import Skill from './Skill';
+import React from "react";
+import { motion } from "framer-motion";
+import Skill from "./Skill";
 import { MYSkills } from "@/typings";
 
 type Props = {
@@ -9,26 +9,35 @@ type Props = {
 
 function Skills({ skills }: Props) {
   return (
+    <section className="snap-start min-h-screen flex flex-col justify-center items-center px-5 md:px-10 mx-auto max-w-7xl">
+      {/* Section Title */}
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-3">
+        Skills
+      </h3>
+
+      {/* Subtitle */}
+      <h4 className="w-full text-center text-gray-400 uppercase tracking-[3px] text-sm mb-10">
+        Hover over a skill for current proficiency
+      </h4>
+
+      {/* Skills Grid */}
       <motion.div
-          initial={{opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          className='flex relative flex-col text-center justify-evenly md:text-left xl:flex-row max-w-[2000px] xl:px-10 min-h-screen  xl:space-y-0 mx-auto items-center'>
-        <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>Skills</h3>
-
-          <h3 className='absolute top-36 uppercase tracking-[3px] text-gray-500 text-sm'>Hover over a skill for current proficiency</h3>
-
-      <div className='grid grid-cols-6 gap-5 self-center mx-auto xl:grid-cols-6'>
-          {skills?.slice(0, skills.length / 2).map((skill) => (
-            <Skill key={skill._id} skill={skill} />
-          ))}
-          {skills?.slice(skills.length / 2, skills.length).map((skill) => (
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 xl:mt-12 gap-5 justify-center items-center"
+      >
+        {skills?.slice(0, Math.ceil(skills.length / 2)).map((skill) => (
+          <Skill key={skill._id} skill={skill} />
+        ))}
+        {skills
+          ?.slice(Math.ceil(skills.length / 2), skills.length)
+          .map((skill) => (
             <Skill key={skill._id} skill={skill} directionLeft />
           ))}
-            </div>
-    </motion.div>
-  )
+      </motion.div>
+    </section>
+  );
 }
 
-export default Skills
-
+export default Skills;

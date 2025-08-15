@@ -9,39 +9,42 @@ type Props = {
 
 function About({ pageInfo }: Props) {
   return (
-    <div className="flex flex-col h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center relative">
-      {/* Title stays absolutely positioned */}
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+    <section className="snap-center min-h-screen flex flex-col justify-center items-center px-5 md:px-10 mx-auto max-w-7xl">
+      {/* Section Title */}
+      <h3 className="w-full text-center uppercase tracking-[20px] text-gray-500 text-2xl mb-10">
         About
       </h3>
 
-      {/* Add top padding here to prevent overlap */}
-      <div className="flex flex-col md:flex-row items-center space-y-10 md:space-y-0 md:space-x-10">
+      {/* Content */}
+      <div className="flex flex-col md:flex-row justify-center items-center space-y-10 md:space-y-0 md:space-x-10">
+        {/* Profile Image */}
         <motion.img
           initial={{ x: -200, opacity: 0 }}
           transition={{ duration: 1.2 }}
           whileInView={{ opacity: 1, x: 0 }}
           src={urlFor(pageInfo?.profilePic).url()}
           alt="Steve-John's Image"
-          className="mb-10  mt-20 md:mt-0 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]"
+          className="w-56 h-56 md:w-64 md:h-80 xl:w-[400px] xl:h-[500px] rounded-full md:rounded-lg object-cover flex-shrink-0"
         />
 
+        {/* Text Content */}
         <motion.div
           initial={{ x: 200, opacity: 0 }}
           transition={{ duration: 1.2 }}
           whileInView={{ opacity: 1, x: 0 }}
-          className="space-y-10 px-0 md:px-10"
+          className="space-y-5 md:space-y-10 text-center md:text-left px-0 md:px-10"
         >
-          <h4 className="text-4xl font-semibold uppercase">
+          <h4 className="text-3xl md:text-4xl font-semibold uppercase">
             Here is a{" "}
             <span className="underline decoration-[#F7AB0A]/50">little</span>{" "}
             background
           </h4>
-          {/* Add a short description if you like */}
-          <p className="text-base">{pageInfo?.backgroundInformation}</p>
+          <p className="text-base md:text-lg">
+            {pageInfo?.backgroundInformation}
+          </p>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
 
