@@ -20,20 +20,37 @@ function Skills({ skills }: Props) {
         Hover over a skill for current proficiency
       </h4>
 
-      {/* Skills Grid */}
+      {/* Skills Grid with staggered animation */}
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 xl:mt-12 gap-5 justify-center items-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.1, // stagger each skill fade-in
+            },
+          },
+        }}
+        className="grid sm:grid-cols-4 md:grid-cols-6 xl:mt-12 gap-5 justify-center items-center"
       >
         {skills?.slice(0, Math.ceil(skills.length / 2)).map((skill) => (
-          <Skill key={skill._id} skill={skill} />
+          <Skill
+            key={skill._id}
+            skill={skill}
+            className="w-12 h-12 sm:w-16 sm:h-16" // smaller images
+          />
         ))}
         {skills
           ?.slice(Math.ceil(skills.length / 2), skills.length)
           .map((skill) => (
-            <Skill key={skill._id} skill={skill} directionLeft />
+            <Skill
+              key={skill._id}
+              skill={skill}
+              directionLeft
+              className="w-12 h-12 sm:w-16 sm:h-16" // smaller images
+            />
           ))}
       </motion.div>
     </section>

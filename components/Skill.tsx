@@ -13,17 +13,18 @@ function Skill({ directionLeft, skill }: Props) {
     <div className="group relative flex justify-center items-center cursor-pointer">
       {/* Skill Image */}
       <motion.img
-        initial={{ x: directionLeft ? -200 : 200, opacity: 0 }}
+        initial={{ x: directionLeft ? -150 : 150, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
+        viewport={{ once: true }} // Animate only once
+        transition={{ duration: 0.8 }}
         src={urlFor(skill.image).url()}
         alt={skill.title}
-        className="rounded-full border border-gray-500 object-cover w-20 h-20 md:w-24 md:h-24 xl:w-28 xl:h-28 filter group-hover:grayscale transition duration-300 ease-in-out"
+        className="rounded-full border border-gray-500 object-cover w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 filter group-hover:grayscale transition duration-300 ease-in-out"
       />
 
       {/* Hover Overlay */}
-      <div className="absolute rounded-full opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-20 h-20 md:w-28 md:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
-        <p className="text-xl md:text-2xl xl:text-3xl font-bold text-black">
+      <div className="absolute rounded-full opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 flex items-center justify-center">
+        <p className="text-lg md:text-xl xl:text-2xl font-bold text-black">
           {skill.progress}%
         </p>
       </div>
