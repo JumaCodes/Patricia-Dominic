@@ -15,6 +15,9 @@ import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchExperiences } from "@/utils/fetchExperiences";
 import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchSocials } from "@/utils/fetchSocials";
+import Expertise from "@/components/Expertise";
+import { fetchExpertise } from "@/utils/fetchExpertise";
+import { Expertises } from "@/typings";
 
 type Props = {
   pageInfo: PageInfo;
@@ -22,9 +25,10 @@ type Props = {
   experiences: Experiences[];
   socials: Social[];
   skills: MYSkills[];
+  expertise: Expertises[];
 };
 
-const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
+const Home = ({ pageInfo, projects, experiences, socials, skills, expertise }: Props) => {
   const [showButton, setShowButton] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -63,6 +67,10 @@ const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
         <About pageInfo={pageInfo} />
       </section>
 
+      <section id="expertise" className="min-h-screen mb-40 mt-20">
+        <Expertise expertise={expertise} />
+      </section>
+
       <section id="experience" className="min-h-screen mb-40 mt-20">
         <Experience experiences={experiences} />
       </section>
@@ -82,7 +90,7 @@ const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
         <div className="flex items-center justify-center mt-6 md:hidden">
           <Link href="#hero">
             <img
-              src="https://pbs.twimg.com/media/GyEHoBdWoAAM_4c?format=jpg&name=900x900"
+              src="https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
               alt="Back to top"
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer transition duration-300"
             />
@@ -95,7 +103,7 @@ const Home = ({ pageInfo, projects, experiences, socials, skills }: Props) => {
         <Link href="#hero">
           <footer className="hidden md:flex fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 cursor-pointer">
             <img
-              src="https://pbs.twimg.com/media/GyEHoBdWoAAM_4c?format=jpg&name=900x900"
+              src="https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
               alt="Back to top"
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer transition duration-300"
             />
@@ -110,17 +118,18 @@ export default Home;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const [pageInfo, projects, experiences, skills, socials] =
+    const [pageInfo, projects, experiences, skills, socials, expertise] =
       await Promise.all([
         fetchPageInfo(),
         fetchProjects(),
         fetchExperiences(),
         fetchSkills(),
         fetchSocials(),
+        fetchExpertise(),
       ]);
 
     return {
-      props: { pageInfo, projects, experiences, skills, socials },
+      props: { pageInfo, projects, experiences, skills, socials, expertise },
       revalidate: 10,
     };
   } catch (error) {
@@ -133,6 +142,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
         experiences: [],
         skills: [],
         socials: [],
+        expertise: [],
       },
       revalidate: 10,
     };

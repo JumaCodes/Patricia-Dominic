@@ -10,7 +10,7 @@ type Props = {
 
 function Skill({ directionLeft, skill }: Props) {
   return (
-    <div className="group relative flex justify-center items-center cursor-pointer">
+    <div className="group relative flex justify-center items-center flex-col cursor-pointer">
       {/* Skill Image */}
       <motion.img
         initial={{ x: directionLeft ? -150 : 150, opacity: 0 }}
@@ -23,11 +23,15 @@ function Skill({ directionLeft, skill }: Props) {
       />
 
       {/* Hover Overlay */}
-      <div className="absolute rounded-full opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 flex items-center justify-center">
+      <div className="absolute top-0 rounded-full opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 flex items-center justify-center">
         <p className="text-lg md:text-xl xl:text-2xl font-bold text-black">
           {skill.progress}%
         </p>
       </div>
+
+      <p className="text-lg md:text-xl xl:text-2xl font-bold text-white md:mt-10 mt-4 mb-4">
+        {skill.title}
+      </p>
     </div>
   );
 }

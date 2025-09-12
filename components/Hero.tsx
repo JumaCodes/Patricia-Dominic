@@ -13,8 +13,10 @@ const TypewriterHero: React.FC<Props> = ({ pageInfo }) => {
   const [text] = useTypewriter({
     words: [
       `Hi, The Name's ${pageInfo?.name}`,
-      `Guy-who-loves-Coffee.tsx`,
-      `<ButLovesToCodeMore />`,
+      `Your Go-To Partner`,
+      `Organization, Communication & Productivity`,
+      `Inbox, Calendar and CRM Expert`,
+      `Customer Support Specialist`,
     ],
     loop: true,
     delaySpeed: 2000,
@@ -53,6 +55,11 @@ const TypewriterHero: React.FC<Props> = ({ pageInfo }) => {
           <Link href="#experience">
             <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
               Experience
+            </button>
+          </Link>
+          <Link href="#expertise">
+            <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
+              Expertise
             </button>
           </Link>
           <Link href="#skills">

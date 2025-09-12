@@ -50,6 +50,11 @@ export interface Experiences extends SanityBody {
     points: string[];
     technologies: Technology[];
 }
+export interface Expertises extends SanityBody {
+  _type: "expertise";
+  title: string;
+  points: string[]; // bullet points
+}
 
 export interface Project extends SanityBody {
     title: string;

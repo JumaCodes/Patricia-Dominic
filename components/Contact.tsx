@@ -15,7 +15,7 @@ function Contact({}: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href = `mailto:olumesestevejohn@gmail.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
+    window.location.href = `mailto:patriciadominic010@gmail.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
   };
 
   return (
@@ -28,22 +28,24 @@ function Contact({}: Props) {
       {/* Subtitle */}
       <h4 className="text-3xl md:text-4xl font-semibold text-center mb-10">
         I have got just what you need.{" "}
-        <span className="underline decoration-[#F7AB0A]/50">Let's Talk.</span>
+        <span className="underline decoration-[#F7AB0A]/50">
+          Let's Collaborate.
+        </span>
       </h4>
 
       {/* Contact Info */}
       <div className="flex flex-col space-y-5 mb-10 text-center">
         <div className="flex items-center justify-center space-x-5">
           <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-          <p className="text-xl md:text-2xl">+2349151958943</p>
+          <p className="text-xl md:text-2xl">+2349045193755</p>
         </div>
         <div className="flex items-center justify-center space-x-5">
           <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-          <p className="text-xl md:text-2xl">olumesestevejohn@gmail.com</p>
+          <p className="text-xl md:text-2xl">patriciadominic010@gmail.com</p>
         </div>
         <div className="flex items-center justify-center space-x-5">
           <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-          <p className="text-xl md:text-2xl">Lagos, Nigeria</p>
+          <p className="text-xl md:text-2xl">Remote | On-site | Hybrid</p>
         </div>
       </div>
 
