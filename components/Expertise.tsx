@@ -39,7 +39,7 @@ const Expertise = ({ expertise }: Props) => {
             key={item._id}
             className="bg-[#292929] p-8 md:p-10 cursor-pointer hover:opacity-100 opacity-70 rounded-2xl p-8 shadow-xl flex flex-col hover:scale-105 transition-transform"
           >
-            <h4 className="text-lg md:text-2xl font-semibold mb-6 text-white text-center">
+            <h4 className="text-lg md:text-2xl font-semibold mb-6 text-white text-start">
               {item.title}
             </h4>
             <motion.ul
