@@ -37,7 +37,7 @@ const Expertise = ({ expertise }: Props) => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2 }}
             key={item._id}
-            className="bg-[#292929] p-8 md:p-10 cursor-pointer hover:opacity-100 opacity-70 rounded-2xl p-8 shadow-xl flex flex-col hover:scale-105 transition-transform"
+            className="bg-[#292929] md:p-10 cursor-pointer hover:opacity-100 opacity-70 rounded-2xl p-8 shadow-xl flex flex-col hover:scale-105 transition-transform"
           >
             <h4 className="text-lg md:text-2xl font-semibold mb-6 text-white text-start">
               {item.title}

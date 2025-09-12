@@ -6,11 +6,14 @@ import { urlFor } from "@/sanity";
 type Props = {
   directionLeft?: boolean;
   skill: MYSkills;
+  className?: string; // ✅ added this
 };
 
-function Skill({ directionLeft, skill }: Props) {
+function Skill({ directionLeft, skill, className }: Props) {
   return (
-    <div className="group relative flex justify-center items-center flex-col cursor-pointer">
+    <div
+      className={`group relative flex justify-center items-center flex-col cursor-pointer ${className}`}
+    >
       {/* Skill Image */}
       <motion.img
         initial={{ x: directionLeft ? -150 : 150, opacity: 0 }}

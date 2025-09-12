@@ -39,7 +39,7 @@ function Skills({ skills }: Props) {
           <Skill
             key={skill._id}
             skill={skill}
-            className="w-12 h-12 sm:w-16 sm:h-16" // smaller images
+            className="w-12 h-12 sm:w-16 sm:h-16"
           />
         ))}
         {skills
