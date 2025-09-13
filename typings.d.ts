@@ -19,10 +19,10 @@ export interface PageInfo extends SanityBody {
     backgroundInformation: string;
     email: string;
     role: string;
-    heroImage: Image;
+    heroImage: Image | null;
     name: string;
     phoneNumber: string;
-    profilePic: Image;
+    profilePic: Image | null;
 }
 
 export interface Technology extends SanityBody {
