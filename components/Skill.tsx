@@ -19,7 +19,11 @@ function Skill({ directionLeft, skill }: Props) {
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: true }} // Animate only once
         transition={{ duration: 0.8 }}
-        src={urlFor(skill.image)?.url()}
+        src={
+          skill?.image
+            ? urlFor(skill.image)?.url()
+            : "https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
+        }
         alt={skill.title}
         className="rounded-full border border-gray-500 object-cover w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 filter group-hover:grayscale transition duration-300 ease-in-out"
       />

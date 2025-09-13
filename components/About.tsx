@@ -22,8 +22,12 @@ function About({ pageInfo }: Props) {
           initial={{ x: -200, opacity: 0 }}
           transition={{ duration: 1.2 }}
           whileInView={{ opacity: 1, x: 0 }}
-          src={urlFor(pageInfo?.profilePic)?.url()}
-          alt="Steve-John's Image"
+          src={
+            pageInfo?.profilePic
+              ? urlFor(pageInfo.profilePic)?.url()
+              : "https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
+          }
+          alt="Patricia Dominic Image"
           className="w-56 h-56 md:w-64 md:h-80 xl:w-[400px] xl:h-[500px] rounded-full md:rounded-lg object-cover flex-shrink-0"
         />
 
