@@ -75,7 +75,11 @@ function Projects({ projects }: Props) {
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                 {project.technologies?.map((tech) => (
                   <img
-                    src={urlFor(tech.image).url()}
+                    src={
+                      tech.image
+                        ? (urlFor(tech.image)?.url() ?? "/fallback-tech.png")
+                        : "/fallback-tech.png"
+                    }
                     key={tech._id}
                     className="w-8 h-8 md:w-12 md:h-12 object-cover rounded-full"
                     alt={tech.title}
