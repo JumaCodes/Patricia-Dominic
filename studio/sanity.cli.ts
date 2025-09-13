@@ -4,18 +4,10 @@ import { defineCliConfig } from 'sanity/cli'
 const projectId = 'c8lqgnbi';
 const dataset = 'production';
 
-if (!projectId) {
-  throw new Error('Missing environment variable: STUDIO_PROJECT_ID')
-}
-
-if (!dataset) {
-  throw new Error('Missing environment variable: STUDIO_DATASET')
-}
-
 export default defineCliConfig({
   api: {
     projectId,
     dataset,
   },
+  autoUpdates: true,
 })
-

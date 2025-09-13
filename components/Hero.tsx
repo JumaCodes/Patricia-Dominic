@@ -4,12 +4,24 @@ import BackgroundCircles from "./BackgroundCircles";
 import Link from "next/link";
 import { PageInfo } from "@/typings";
 import { urlFor } from "@/sanity";
+// import { urlFor } from "../sanity";
 
 type Props = {
   pageInfo: PageInfo;
 };
 
+
+const handleSmoothScroll = (e: React.MouseEvent, id: string) => {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+
 const TypewriterHero: React.FC<Props> = ({ pageInfo }) => {
+  const heroImageUrl = pageInfo?.heroImage ? urlFor(pageInfo.heroImage)?.url() : "/fallback-image.png";
+  console.log("PageInfo in Hero:", pageInfo); // Debugging line
   const [text] = useTypewriter({
     words: [
       `Hi, The Name's ${pageInfo?.name}`,
@@ -28,7 +40,7 @@ const TypewriterHero: React.FC<Props> = ({ pageInfo }) => {
 
       {/* Profile Image */}
       <img
-        src={urlFor(pageInfo?.heroImage).url()}
+        src={urlFor(pageInfo.heroImage)?.url()}
         alt="Steve-John's Image"
         className="relative rounded-full h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 mx-auto object-cover"
       />
@@ -47,27 +59,36 @@ const TypewriterHero: React.FC<Props> = ({ pageInfo }) => {
 
         {/* Buttons */}
         <div className="pt-4 sm:pt-5 flex flex-wrap justify-center gap-2 sm:gap-4">
-          <Link href="#about">
+          <Link href="#about" onClick={(e) => handleSmoothScroll(e, "about")}>
             <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
               About
             </button>
           </Link>
-          <Link href="#experience">
+          <Link
+            href="#experience"
+            onClick={(e) => handleSmoothScroll(e, "experience")}
+          >
             <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
               Experience
             </button>
           </Link>
-          <Link href="#expertise">
+          <Link
+            href="#expertise"
+            onClick={(e) => handleSmoothScroll(e, "expertise")}
+          >
             <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
               Expertise
             </button>
           </Link>
-          <Link href="#skills">
+          <Link href="#skills" onClick={(e) => handleSmoothScroll(e, "skills")}>
             <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
               Skills
             </button>
           </Link>
-          <Link href="#projects">
+          <Link
+            href="#projects"
+            onClick={(e) => handleSmoothScroll(e, "projects")}
+          >
             <button className="heroButton text-xs sm:text-sm px-3 sm:px-5 py-1 sm:py-2">
               Projects
             </button>

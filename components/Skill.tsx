@@ -6,13 +6,12 @@ import { urlFor } from "@/sanity";
 type Props = {
   directionLeft?: boolean;
   skill: MYSkills;
-  className?: string; // ✅ added this
 };
 
-function Skill({ directionLeft, skill, className }: Props) {
+function Skill({ directionLeft, skill }: Props) {
   return (
     <div
-      className={`group relative flex justify-center items-center flex-col cursor-pointer ${className}`}
+      className={`group relative flex justify-center items-center flex-col cursor-pointer`}
     >
       {/* Skill Image */}
       <motion.img
@@ -20,7 +19,7 @@ function Skill({ directionLeft, skill, className }: Props) {
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: true }} // Animate only once
         transition={{ duration: 0.8 }}
-        src={urlFor(skill.image).url()}
+        src={urlFor(skill.image)?.url()}
         alt={skill.title}
         className="rounded-full border border-gray-500 object-cover w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 filter group-hover:grayscale transition duration-300 ease-in-out"
       />

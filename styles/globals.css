@@ -7,6 +7,7 @@ body {
     height: 100%;
     overflow: hidden;
     /* prevents default scrolling */
+    scroll-behavior: smooth;
 }
 
 @layer components {

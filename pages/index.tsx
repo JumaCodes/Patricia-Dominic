@@ -28,6 +28,17 @@ type Props = {
   expertise: Expertises[];
 };
 
+const scrollToHero = (e: React.MouseEvent) => {
+  // keep default anchor fallback accessible
+  e.preventDefault();
+  const hero = document.getElementById("hero");
+  if (!hero) return;
+  hero.scrollIntoView({ behavior: "smooth", block: "start" });
+  // If you need offset (fixed header), calculate:
+  // const top = hero.getBoundingClientRect().top + window.scrollY - headerHeight
+  // window.scrollTo({ top, behavior: 'smooth' })
+};
+
 const Home = ({ pageInfo, projects, experiences, socials, skills, expertise }: Props) => {
   const [showButton, setShowButton] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -87,8 +98,11 @@ const Home = ({ pageInfo, projects, experiences, socials, skills, expertise }: P
         <Contact />
 
         {/* Mobile Back to Top Button */}
-        <div className="flex items-center justify-center mt-6 md:hidden">
-          <Link href="#hero">
+        <div
+          className="flex items-center justify-center mt-6 md:hidden"
+          onClick={scrollToHero}
+        >
+          <Link href="#hero" scroll={true}>
             <img
               src="https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
               alt="Back to top"
@@ -100,7 +114,7 @@ const Home = ({ pageInfo, projects, experiences, socials, skills, expertise }: P
 
       {/* Desktop Floating Back to Top */}
       {showButton && (
-        <Link href="#hero">
+        <Link href="#hero" scroll={true} onClick={scrollToHero}>
           <footer className="hidden md:flex fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 cursor-pointer">
             <img
               src="https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
