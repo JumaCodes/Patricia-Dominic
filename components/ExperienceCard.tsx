@@ -20,7 +20,11 @@ function ExperienceCard({ experience }: Props) {
         initial={{ y: -100, opacity: 0 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2 }}
-        src={urlFor(experience?.companyImage).url()}
+        src={
+          experience?.companyImage
+            ? urlFor(experience.companyImage)?.url()
+            : "https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
+        }
         alt="Company Image"
         className="bg-white w-24 h-24 md:w-28 md:h-28 rounded-full object-cover object-center"
       />
@@ -37,7 +41,11 @@ function ExperienceCard({ experience }: Props) {
           {experience.technologies.map((technology) => (
             <img
               key={technology._id}
-              src={urlFor(technology.image).url()}
+              src={
+                technology?.image
+                  ? urlFor(technology.image)?.url()
+                  : "https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
+              }
               alt="stack Icon"
               className="h-10 w-10 rounded-full"
             />

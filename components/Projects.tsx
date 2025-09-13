@@ -24,13 +24,13 @@ function Projects({ projects }: Props) {
       </h3>
 
       <motion.h4
-              initial={{ x: -100, opacity: 0 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.2 }}
-              className="w-full text-center text-gray-400 uppercase tracking-[3px] text-sm mb-20"
-            >
-              Click on the images to view a larger preview.
-            </motion.h4>
+        initial={{ x: -100, opacity: 0 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2 }}
+        className="w-full text-center text-gray-400 uppercase tracking-[3px] text-sm mb-20"
+      >
+        Click on the images to view a larger preview.
+      </motion.h4>
 
       {/* Projects container */}
       <div className="flex space-x-10 px-5 md:px-20 flex-row md:flex-row overflow-x-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 pb-8">
@@ -45,10 +45,20 @@ function Projects({ projects }: Props) {
                 initial={{ y: -100, opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2 }}
-                src={urlFor(project.image).url()}
+                src={
+                  project?.image
+                    ? urlFor(project.image)?.url()
+                    : "https://res.cloudinary.com/dgmfpoddb/image/upload/v1757670643/Patricia_Dominic_kfhipy.jpg"
+                }
                 alt={project.title}
                 className="w-full h-full object-cover rounded-lg cursor-pointer"
-                onClick={() => setSelectedImage(urlFor(project.image).url())}
+                onClick={() =>
+                  setSelectedImage(
+                    project?.image
+                      ? (urlFor(project.image)?.url() ?? null)
+                      : null
+                  )
+                }
               />
             </div>
 
