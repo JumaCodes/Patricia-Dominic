@@ -21,7 +21,6 @@ const handleSmoothScroll = (e: React.MouseEvent, id: string) => {
 
 const TypewriterHero: React.FC<Props> = ({ pageInfo }) => {
   const heroImageUrl = pageInfo?.heroImage ? urlFor(pageInfo.heroImage)?.url() : "/fallback-image.png";
-  console.log("PageInfo in Hero:", pageInfo); // Debugging line
   const [text] = useTypewriter({
     words: [
       `Hi, The Name's ${pageInfo?.name}`,

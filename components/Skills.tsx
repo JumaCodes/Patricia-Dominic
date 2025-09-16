@@ -23,7 +23,7 @@ function Skills({ skills }: Props) {
       {/* Skills Grid with staggered animation */}
       <motion.div
         initial={{ y: -100, opacity: 0 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
         variants={{
           visible: {
             transition: {
@@ -31,23 +31,15 @@ function Skills({ skills }: Props) {
             },
           },
         }}
-        className="grid sm:grid-cols-4 md:grid-cols-6 xl:mt-12 gap-5 justify-center items-center"
+        className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 xl:mt-12 gap-5 justify-center items-center"
       >
         {skills?.slice(0, Math.ceil(skills.length / 2)).map((skill) => (
-          <Skill
-            key={skill._id}
-            skill={skill}
-            
-          />
+          <Skill key={skill._id} skill={skill} />
         ))}
         {skills
           ?.slice(Math.ceil(skills.length / 2), skills.length)
           .map((skill) => (
-            <Skill
-              key={skill._id}
-              skill={skill}
-              directionLeft
-            />
+            <Skill key={skill._id} skill={skill} directionLeft />
           ))}
       </motion.div>
     </section>
