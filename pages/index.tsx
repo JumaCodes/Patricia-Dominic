@@ -74,23 +74,23 @@ const Home = ({ pageInfo, projects, experiences, socials, skills, expertise }: P
         <Hero pageInfo={pageInfo} />
       </section>
 
-      <section id="about" className="min-h-screen mb-40 mt-20">
+      <section id="about" className="min-h-screen mb-28 mt-10">
         <About pageInfo={pageInfo} />
       </section>
 
-      <section id="expertise" className="min-h-screen mb-40 mt-20">
+      <section id="expertise" className="min-h-screen mb-28 mt-10">
         <Expertise expertise={expertise} />
       </section>
 
-      <section id="experience" className="min-h-screen mb-40 mt-20">
+      <section id="experience" className="min-h-screen mb-28 mt-10">
         <Experience experiences={experiences} />
       </section>
 
-      <section id="skills" className="min-h-screen mb-40 mt-20">
+      <section id="skills" className="min-h-screen mb-28 mt-10">
         <Skills skills={skills} />
       </section>
 
-      <section id="projects" className="min-h-screen mt-20">
+      <section id="projects" className="min-h-screen mb-28 mt-10">
         <Projects projects={projects} />
       </section>
 
@@ -99,7 +99,7 @@ const Home = ({ pageInfo, projects, experiences, socials, skills, expertise }: P
 
         {/* Mobile Back to Top Button */}
         <div
-          className="flex items-center justify-center mt-6 md:hidden"
+          className="flex items-center justify-center mt-4 md:hidden"
           onClick={scrollToHero}
         >
           <Link href="#hero" scroll={true}>

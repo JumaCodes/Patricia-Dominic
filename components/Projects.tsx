@@ -29,7 +29,7 @@ function Projects({ projects }: Props) {
         transition={{ duration: 1.2 }}
         className="w-full text-center text-gray-400 uppercase tracking-[3px] text-sm mb-20"
       >
-        Click on the images to view a larger preview.
+        Scroll Horizontally for more project and click on the images to view a larger preview.
       </motion.h4>
 
       {/* Projects container */}
